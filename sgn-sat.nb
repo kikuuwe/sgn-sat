@@ -10,16 +10,81 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      8384,        233]
-NotebookOptionsPosition[      7763,        207]
-NotebookOutlinePosition[      8150,        224]
-CellTagsIndexPosition[      8107,        221]
+NotebookDataLength[     11610,        300]
+NotebookOptionsPosition[     10948,        273]
+NotebookOutlinePosition[     11335,        290]
+CellTagsIndexPosition[     11292,        287]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", "\[IndentingNewLine]", "  ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"sgn", "-", 
+     RowBox[{"sat", "\n", "  ", "\n", "  ", 
+      RowBox[{"Author", ":", " ", 
+       RowBox[{
+        RowBox[{
+        "Ryo", " ", "Kikuuwe", "\n", "  ", "\n", "  ", "Copyright", " ", 
+         RowBox[{"(", "c", ")"}], " ", "2014"}], "-", 
+        RowBox[{
+        "2015", " ", "Ryo", " ", "Kikuuwe", "\n", "  ", "Copyright", " ", 
+         RowBox[{"(", "c", ")"}], " ", "2014"}], "-", 
+        RowBox[{
+        "2015", " ", "Kyushu", " ", "University", "\n", "  ", "\n", "  ", 
+         "The", " ", "\"\<sgn-sat\>\"", " ", "is", " ", "a", " ", "free", " ",
+          "software"}]}]}]}]}], ";", " ", 
+    RowBox[{"you", " ", "can", " ", "redistribute", " ", "it", " ", 
+     RowBox[{"and", "/", "or"}], " ", "modify", "\n", "  ", "it", " ", 
+     "under", " ", "the", " ", "terms", " ", "of", " ", "the", " ", "GNU", 
+     " ", "General", " ", "Public", " ", "License", " ", "as", " ", 
+     "published", " ", "by", "\n", "  ", "the", " ", "Free", " ", "Software", 
+     " ", "Foundation"}], ";", " ", 
+    RowBox[{
+    "either", " ", "version", " ", "2", " ", "of", " ", "the", " ", 
+     "License"}]}], ",", " ", 
+   RowBox[{"or", "\n", "  ", 
+    RowBox[{"(", 
+     RowBox[{"at", " ", "your", " ", "option"}], ")"}], " ", "any", " ", 
+    "later", " ", 
+    RowBox[{"version", ".", "\n", "  ", "This"}], " ", "program", " ", "is", 
+    " ", "distributed", " ", "in", " ", "the", " ", "hope", " ", "that", " ", 
+    "it", " ", "will", " ", "be", " ", "useful"}], ",", "\n", "  ", 
+   RowBox[{
+    RowBox[{"but", " ", "WITHOUT", " ", "ANY", " ", "WARRANTY"}], ";", " ", 
+    RowBox[{
+    "without", " ", "even", " ", "the", " ", "implied", " ", "warranty", " ", 
+     "of", "\n", "  ", "MERCHANTABILITY", " ", "or", " ", "FITNESS", " ", 
+     "FOR", " ", "A", " ", "PARTICULAR", " ", 
+     RowBox[{"PURPOSE", ".", "  ", "See"}], " ", "the", "\n", "  ", "GNU", 
+     " ", "General", " ", "Public", " ", "License", " ", "for", " ", "more", 
+     " ", 
+     RowBox[{"details", ".", "\n", "  ", "\n", "  ", "You"}], " ", "should", 
+     " ", "have", " ", "received", " ", "a", " ", "copy", " ", "of", " ", 
+     "the", " ", "GNU", " ", "General", " ", "Public", " ", "License", "\n", 
+     "  ", "along", " ", "with", " ", "this", " ", "program"}], ";", " ", 
+    RowBox[{"if", " ", "not"}]}], ",", " ", 
+   RowBox[{
+   "write", " ", "to", " ", "the", " ", "Free", " ", "Software", "\n", "  ", 
+    "Foundation"}], ",", " ", 
+   RowBox[{"Inc", "."}], ",", " ", 
+   RowBox[{"51", " ", "Franklin", " ", "St"}], ",", " ", 
+   RowBox[{"Fifth", " ", "Floor"}], ",", " ", "Boston", ",", " ", 
+   RowBox[{
+    RowBox[{"MA", " ", "02110"}], "-", 
+    RowBox[{"1301", " ", "USA", "\n", "  ", "\n", "  ", 
+     RowBox[{"Contact", ":", " ", 
+      RowBox[{"Ryo", " ", "Kikuuwe"}]}]}]}], ",", " ", 
+   RowBox[{
+    RowBox[{"kikuuwe", "@", "ieee"}], ".", "org"}]}], "\n", "*)"}]], "Input",
+ CellChangeTimes->{{3.6302859001517897`*^9, 3.6302859062691393`*^9}, {
+  3.6302860409948454`*^9, 3.630286099136171*^9}},
+ FormatType->"InputForm"],
 
 Cell[CellGroupData[{
+
 Cell[BoxData[{
  RowBox[{
   RowBox[{
@@ -114,7 +179,8 @@ Cell[BoxData[{
   3.630265452184038*^9, 3.6302654739192815`*^9}, {3.6302658469426174`*^9, 
   3.630265963362276*^9}, {3.6302847907483354`*^9, 3.6302848629324636`*^9}, {
   3.630284947644309*^9, 3.630284986051506*^9}, {3.630285021519535*^9, 
-  3.6302850349103003`*^9}, {3.630285090192463*^9, 3.6302853990391273`*^9}},
+  3.6302850349103003`*^9}, {3.630285090192463*^9, 3.6302853990391273`*^9}, {
+  3.6302861140220222`*^9, 3.6302861323440704`*^9}},
  FormatType->"InputForm"],
 
 Cell[CellGroupData[{
@@ -223,16 +289,17 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
+Cell[558, 20, 3129, 63, 549, "Input"],
 Cell[CellGroupData[{
-Cell[580, 22, 3331, 95, 422, "Input"],
+Cell[3712, 87, 3384, 96, 365, "Input"],
 Cell[CellGroupData[{
-Cell[3936, 121, 285, 4, 31, "Print"],
-Cell[4224, 127, 669, 13, 31, "Print"],
-Cell[4896, 142, 420, 8, 31, "Print"],
-Cell[5319, 152, 287, 4, 31, "Print"],
-Cell[5609, 158, 641, 13, 47, "Print"],
-Cell[6253, 173, 717, 14, 47, "Print"],
-Cell[6973, 189, 762, 14, 47, "Print"]
+Cell[7121, 187, 285, 4, 31, "Print"],
+Cell[7409, 193, 669, 13, 31, "Print"],
+Cell[8081, 208, 420, 8, 31, "Print"],
+Cell[8504, 218, 287, 4, 31, "Print"],
+Cell[8794, 224, 641, 13, 47, "Print"],
+Cell[9438, 239, 717, 14, 47, "Print"],
+Cell[10158, 255, 762, 14, 47, "Print"]
 }, Open  ]]
 }, Open  ]]
 }

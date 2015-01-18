@@ -1,12 +1,11 @@
 (* ::Package:: *)
 
-(*
+(*******************************************************************************
   sgn-sat
   
   Author: Ryo Kikuuwe
   
   Copyright (c) 2014-2015 Ryo Kikuuwe
-  Copyright (c) 2014-2015 Kyushu University
   
   The "sgn-sat" is a free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -22,7 +21,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   
   Contact: Ryo Kikuuwe, kikuuwe@ieee.org
-*)
+*******************************************************************************)
 
 rSgnSatSolve[AA_, CC_, BB_, xx_, rVerbose_] := Module[{A0,A1,B0,B1},
    Print["==========================="];
@@ -56,7 +55,3 @@ BB = x - Z y;
 xx = y; 
 rVerbose = True;
 rSgnSatSolve[AA, CC, BB, xx, rVerbose];
-
-
-
-

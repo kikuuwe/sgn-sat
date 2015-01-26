@@ -25,8 +25,8 @@
   
   Contact: Ryo Kikuuwe, kikuuwe@ieee.org
 *******************************************************************************)
-
-rSgnSatSolve[AA_, CC_, BB_, xx_, rVerbose_] := Module[{A0,A1,B0,B1},
+rSgnSatSolve[AA_, CC_, BB_, xx_, rVerbose_] := Module[{A0,A1,B0,B1,S},
+   S = Simplify;
    Print["==========================="];
    Print["Let us solve"]; 
    Print["   ", AA, " = ", CC, " Sgn[ ", BB, " ]"]; 
@@ -38,15 +38,15 @@ rSgnSatSolve[AA_, CC_, BB_, xx_, rVerbose_] := Module[{A0,A1,B0,B1},
    Print["---------------------------"];
    If[rVerbose,
      Print["derivation..."]; 
-     Print["   ", A0/CC + A1*xx , " = Sgn[ ", B0, " ", - B1*xx, " ]"]; 
-     Print["   ", A0/CC + A1*xx , " = Sgn[ ", A1*B0/B1," "         ,        -A1*xx, " ]"]; 
-     Print["   ", A0/CC + A1*xx , " = Sgn[ ", A1*B0/B1 + A0/CC, " ", -(A0/CC+A1*xx)," ]"]; 
-     Print["   ", A0/CC + A1*xx , " = Sat[ ", A1*B0/B1 + A0/CC, " ]"]; 
+     Print["   ", A0/CC + A1*xx //S, " = Sgn[ ", B0, " ", - B1*xx//S, " ]"]; 
+     Print["   ", A0/CC + A1*xx //S, " = Sgn[ ", A1*B0/B1//S," "         ,        -A1*xx//S, " ]"]; 
+     Print["   ", A0/CC + A1*xx //S, " = Sgn[(", A1*B0/B1 + A0/CC//S, ")+(", -(A0/CC+A1*xx)//S,")]"]; 
+     Print["   ", A0/CC + A1*xx //S, " = Sat[ ", A1*B0/B1 + A0/CC//S, " ]"]; 
    ];
    Print["The answer is:"];
-   Print["   ", A1*xx+A0/CC," = Sat[ "                           , A0/CC + A1*B0/B1, " ]"]; 
-   Print["   ", A1*xx      ," = ", -A0/CC   ,           " + Sat[ ",A0/CC + A1*B0/B1, " ]"]; 
-   Print["   ", xx         ," = ", -A0/CC/A1," + ", 1/A1, " Sat[ ",A0/CC + A1*B0/B1, " ]"]; 
+   Print["   ", A1*xx+A0/CC//S," = Sat[ "                                    ,A0/CC + A1*B0/B1 //S, " ]"]; 
+   Print["   ", A1*xx      //S," = ", -A0/CC/A1 //S,               " + Sat[ ",A0/CC + A1*B0/B1 //S, " ]"]; 
+   Print["   ", xx         //S," = ", -A0/CC/A1 //S," + ", 1/A1 //S, " Sat[ ",A0/CC + A1*B0/B1 //S, " ]"]; 
    Print["==========================="];
  ];
 
@@ -58,3 +58,16 @@ BB = x - Z y;
 xx = y; 
 rVerbose = True;
 rSgnSatSolve[AA, CC, BB, xx, rVerbose];
+
+AA = M (vk-vk1)/T-fk; 
+CC = F; 
+BB = -vk; 
+xx = vk; 
+rVerbose = True;
+rSgnSatSolve[AA, CC, BB, xx, rVerbose];
+
+
+
+
+
+

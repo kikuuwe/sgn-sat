@@ -3,6 +3,9 @@
 (*******************************************************************************
   sgn-sat
   
+  sgn-sat is a Mathematica notebook to do derivation based on the relation
+  "y=sgn(x-y) <=> y=sat(x)"
+  
   Author: Ryo Kikuuwe
   
   Copyright (c) 2014-2015 Ryo Kikuuwe

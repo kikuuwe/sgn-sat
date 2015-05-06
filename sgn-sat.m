@@ -4,7 +4,7 @@
   sgn-sat
   
   sgn-sat is a Mathematica notebook to do derivation based on the relations
-  "y=sgn(x-y) <=> y=sat(x)" and "y=dio(x+y) <=> y=max(x,0)"
+  "y=sgn(x-y) <=> y=sat(x)" and "y=dio(x+y) <=> y=max(-x,0)"
    
   For further information on the functions sgn, sat, and dio, see the paper 
   Xiong, Kikuuwe & Yamamoto 2013, Journal of Applied Mathematics, 
@@ -48,7 +48,7 @@ rSgnSatSolve[AA_, CC_, BB_, xx_, rVerbose_] := Module[{A0,A1,B0,B1,S},
      Print["   ", A0/CC + A1*xx //S, " = Sat[ ", A1*B0/B1 + A0/CC//S, " ]"]; 
      Print["The answer is:"];
      Print["   ", A1*xx+A0/CC//S," = Sat[ "                                    ,A0/CC + A1*B0/B1 //S, " ]"]; 
-     Print["   ", A1*xx      //S," = ", -A0/CC/A1 //S,               " + Sat[ ",A0/CC + A1*B0/B1 //S, " ]"]; 
+     Print["   ", A1*xx      //S," = ", -A0/CC    //S,               " + Sat[ ",A0/CC + A1*B0/B1 //S, " ]"]; 
      Print["   ", xx         //S," = ", -A0/CC/A1 //S," + ", 1/A1 //S, " Sat[ ",A0/CC + A1*B0/B1 //S, " ]"]; 
      Print["==========================="];
    ];
@@ -61,33 +61,25 @@ rDioMaxSolve[AA_, CC_, BB_, xx_, rVerbose_] := Module[{A0,A1,B0,B1,S},
    Print["   ", AA, " = ", CC, " Dio[ ", BB, " ]"]; 
    Print["with respect to ", xx];
    B1 = Coefficient[BB, xx];
-   B0 = BB + B1 * xx;
-   A1 = Coefficient[AA, xx]/CC; 
-   A0 = AA - CC*A1*xx; 
+   B0 = BB - B1 * xx;
+   A1 = Coefficient[AA, xx]; 
+   A0 = AA - A1*xx; 
    Print["---------------------------"];
    If[rVerbose,
      Print["derivation..."]; 
-     Print["   ", A0/CC + A1*xx //S, " = Dio[ ", B0, "+",  B1*xx//S, " ]"]; 
-     Print["   ", A0/CC + A1*xx //S, " = Dio[ ", A1*B0/B1//S," "         ,        -A1*xx//S, " ]"]; 
-     Print["   ", A0/CC + A1*xx //S, " = Dio[(", A1*B0/B1 + A0/CC//S, ")+(", -(A0/CC+A1*xx)//S,")]"]; 
-     Print["   ", A0/CC + A1*xx //S, " = Dio[ ", A1*B0/B1 + A0/CC//S, " ]"]; 
+     Print["   ", A0 + A1*xx //S, " = Dio[ ", B0                 ,"+",         B1*xx   //S," ]"]; 
+     Print["   ", A0 + A1*xx //S, " = Dio[ ", A1*B0/B1      //S  ,"+",         A1*xx   //S," ]"]; 
+     Print["   ", A0 + A1*xx //S, " = Dio[(", A1*B0/B1 - A0 //S, ")+(", ( A0 + A1*xx ) //S,")]"]; 
+     Print["   ", A0 + A1*xx //S, " = Max[ ",-A1*B0/B1 + A0 //S, " ,0]"]; 
      Print["The answer is:"];
-     Print["   ", A1*xx+A0/CC//S," = Max[0, "                                    ,A0/CC + A1*B0/B1 //S, " ]"]; 
-     Print["   ", A1*xx      //S," = ", -A0/CC/A1 //S,               " + Max[0, ",A0/CC + A1*B0/B1 //S, " ]"]; 
-     Print["   ", xx         //S," = ", -A0/CC/A1 //S," + ", 1/A1 //S, " Max[0, ",A0/CC + A1*B0/B1 //S, " ]"]; 
+     Print["   ", A1*xx+A0   //S," = Max[0, "                                 ,  A0 - A1*B0/B1 //S, " ]"]; 
+     Print["   ", A1*xx      //S," = Max[",  -A0 //S, ",",   - A1*B0/B1 //S, " ]"]; 
+     Print["   ", xx      //S," = Max[",  -A0/A1 //S, ",",   - B0/B1 //S, " ]"]; 
      Print["==========================="];
    ];
-   (xx//S)==(-A0/CC/A1 //S)  + (1/A1 //S) Max[0, A0/CC + A1*B0/B1 //S]  //Return;
+   (xx//S)== Max[-A0/A1//S, - B0/B1//S]  //Return;
  ];
 
-
-
-AA = X y - z; 
-CC = Y; 
-BB = x + Z y; 
-xx = y; 
-rVerbose = True;
-rDioMaxSolve[AA, CC, BB, xx, rVerbose]
 
 
 AA = X y - z; 
@@ -106,6 +98,14 @@ rSgnSatSolve[AA, CC, BB, xx, rVerbose]
 
 
 rSgnSatSolve[a x + b, c, e - f x , x, rVerbose]
+
+
+AA = X y - z; 
+CC = Y; 
+BB = x + Z y; 
+xx = y; 
+rVerbose = True;
+rDioMaxSolve[AA, CC, BB, xx, rVerbose]
 
 
 
